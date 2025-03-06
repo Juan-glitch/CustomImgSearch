@@ -1,0 +1,83 @@
+my_python_project/
+├── .gitignore
+├── Dockerfile
+├── docker-compose.yml
+├── README.md
+├── requirements.txt
+├── setup.py
+├── src/
+│   ├── __init__.py
+│   ├── main.py
+│   ├── module1/
+│   │   ├── __init__.py
+│   │   ├── class1.py
+│   │   └── utils.py
+│   ├── module2/
+│   │   ├── __init__.py
+│   │   ├── class2.py
+│   │   └── helpers.py
+│   └── common/
+│       ├── __init__.py
+│       └── common_utils.py
+├── tests/
+│   ├── __init__.py
+│   ├── test_module1.py
+│   └── test_module2.py
+└── scripts/
+    ├── __init__.py
+    └── run.sh
+Descripción de los archivos y directorios:
+.gitignore: Lista de archivos y directorios que Git debe ignorar.
+Dockerfile: Archivo de configuración para construir la imagen de Docker.
+docker-compose.yml: Archivo de configuración para Docker Compose.
+README.md: Documentación del proyecto.
+requirements.txt: Lista de dependencias de Python.
+setup.py: Script de configuración para instalar el paquete.
+src/: Directorio principal del código fuente.
+main.py: Punto de entrada del proyecto.
+module1/ y module2/: Directorios para diferentes módulos del proyecto.
+class1.py y class2.py: Clases principales de cada módulo.
+utils.py y helpers.py: Funciones auxiliares para cada módulo.
+common/: Directorio para código común que puede ser utilizado por múltiples módulos.
+common_utils.py: Funciones comunes.
+tests/: Directorio para pruebas unitarias.
+test_module1.py y test_module2.py: Pruebas para cada módulo.
+scripts/: Directorio para scripts auxiliares.
+run.sh: Script para ejecutar el proyecto.
+
+
+
+Estructura de los mensajes de commit
+Tipo de cambio: Indica el tipo de cambio que estás realizando.
+Área afectada: Especifica la parte del proyecto que se ve afectada.
+Descripción breve: Proporciona una descripción concisa del cambio.
+Descripción detallada (opcional): Explica más a fondo el cambio si es necesario.
+Tipos de cambio comunes
+feat: Nueva funcionalidad.
+fix: Corrección de errores.
+docs: Cambios en la documentación.
+style: Cambios de formato, no afectan el código (espacios en blanco, comas, etc.).
+refactor: Refactorización del código.
+test: Añadir o corregir pruebas.
+chore: Tareas de mantenimiento.
+Ejemplos de mensajes de commit
+feat(module1): añadir clase para gestionar usuarios
+
+feat(module1): añadir clase para gestionar usuarios
+
+- Se ha añadido la clase UserManager para gestionar las operaciones CRUD de usuarios.
+- Se han creado métodos para añadir, eliminar y actualizar usuarios.
+fix(module2): corregir error en la función de autenticación
+
+fix(module2): corregir error en la función de autenticación
+
+- Se ha corregido un error que impedía la autenticación de usuarios con contraseñas especiales.
+docs(common): actualizar README con instrucciones de instalación
+
+docs(common): actualizar README con instrucciones de instalación
+
+- Se han añadido instrucciones detalladas para la instalación del proyecto.
+Recomendaciones
+Usa el tiempo presente: Escribe los mensajes de commit en tiempo presente (e.g., "añadir" en lugar de "añadido").
+Sé conciso pero descriptivo: Proporciona suficiente información para entender el cambio sin ser demasiado extenso.
+Sigue una estructura consistente: Asegúrate de que todos los miembros del equipo sigan la misma estructura para mantener la coherencia.
