@@ -1,8 +1,9 @@
 from googleapiclient.discovery import build
-import json
-import requests
 from datetime import datetime
-import os
+from common import guardar_resultados, descargar_imagenes
+
+
+class GoogleSearchEngine:
 
 def buscar_imagenes(query, num_imagenes=10, imgSize="LARGE", tipo="photo", 
                     derechos=None, filetype='png', imgColorType='color'):
@@ -23,8 +24,8 @@ def buscar_imagenes(query, num_imagenes=10, imgSize="LARGE", tipo="photo",
     - Lista de diccionarios con información de las imágenes
     """
     # Reemplaza con tu propia información
-    API_KEY = 'AIzaSyCa8rwThH_fzlwMYNFHGEnmhi_x8KUdQ4w'
-    SEARCH_ENGINE_ID = 'd18c4f572fdbc40b3'
+    API_KEY = 'your google apikey'
+    SEARCH_ENGINE_ID = 'your created search engine id'
     # Construye el servicio de la API
     service = build('customsearch', 'v1', developerKey=API_KEY)
     

@@ -26,6 +26,7 @@ my_python_project/
 └── scripts/
     ├── __init__.py
     └── run.sh
+    
 Descripción de los archivos y directorios:
 .gitignore: Lista de archivos y directorios que Git debe ignorar.
 Dockerfile: Archivo de configuración para construir la imagen de Docker.
