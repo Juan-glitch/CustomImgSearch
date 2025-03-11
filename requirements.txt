@@ -2,4 +2,4 @@ Pillow
 torchvision
 openai-clip
 torch
-pip install ptvsd
+ptvsd

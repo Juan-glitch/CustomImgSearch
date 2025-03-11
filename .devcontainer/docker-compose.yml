@@ -1,0 +1,34 @@
+# docker-compose up -d --build  # Construye la imagen y arranca el contenedor en segundo plano
+services:
+  python-app:
+    # Nombre del contenedor
+    container_name: customimgsearch-python_dev  # Puedes cambiar este nombre si lo prefieres.
+    
+    # Nombre de la imagen que se generará a partir del Dockerfile (se construye desde el contexto actual)
+    image: customimgsearch-python_dev  # Se construye la imagen con este nombre.
+    
+    # Contexto de construcción de la imagen, usaremos el directorio actual
+    build:
+      context: .  # Usamos el directorio actual para la construcción de la imagen.
+    
+    # Volúmenes para compartir código y configuraciones
+    volumes:
+      - .:/app  # Sincroniza el código del proyecto local con el contenedor.
+      - ./vscode-config:/root/.vscode  # Monta el directorio local con configuraciones de VS Code en el contenedor.
+    
+    # Puertos a exponer para acceder a servicios dentro del contenedor
+    ports:
+      - "8080:8080"  # Exponemos el puerto 8080 para acceder a code-server (VS Code en el navegador).
+      - "5678:5678"  # Puerto adicional para habilitar depuración remota si es necesario.
+    
+    # El comando 'tail -f /dev/null' mantiene el contenedor en ejecución indefinidamente
+    command: tail -f /dev/null  # Esto mantiene el contenedor activo.
+    
+    # Opciones que permiten mantener abierta la terminal dentro del contenedor para interacciones y depuración
+    stdin_open: true  # Permite interacción con la terminal del contenedor.
+    tty: true         # Mantiene la terminal activa para depuración o trabajo interactivo.
+
+# Comentarios:
+# - Se expone el puerto 8080 para acceder a code-server, permitiendo usar VS Code vía navegador.
+# - Se sincroniza el código del proyecto y la configuración de VS Code mediante volúmenes.
+# - El contenedor se mantiene activo con 'tail -f /dev/null', y las opciones stdin_open y tty facilitan la interacción.
