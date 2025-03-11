@@ -13,7 +13,8 @@
         "yzhang.markdown-all-in-one",
         "eamodio.gitlens",
         "GitHub.copilot",
-        "DanielSanMedia.vscode-codegpt"
+        "DanielSanMedia.vscode-codegpt",
+        "mhutchie.git-graph"  // Added Git Graph extension
       ],
       "settings": {
         "python.defaultInterpreterPath": "/usr/local/bin/python",
