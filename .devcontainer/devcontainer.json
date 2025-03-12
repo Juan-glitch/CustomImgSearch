@@ -14,7 +14,9 @@
         "eamodio.gitlens",
         "GitHub.copilot",
         "DanielSanMedia.vscode-codegpt",
-        "mhutchie.git-graph"  // Added Git Graph extension
+        "mhutchie.git-graph",
+        "ms-azuretools.vscode-docker",
+        "DanielSanMedium.dscodegpt"
       ],
       "settings": {
         "python.defaultInterpreterPath": "/usr/local/bin/python",

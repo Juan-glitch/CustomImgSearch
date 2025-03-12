@@ -3,3 +3,6 @@ torchvision
 openai-clip
 torch
 ptvsd
+dotenv
+debugpy
+google-api-python-client

@@ -1,6 +1,5 @@
 from googleapiclient.discovery import build
 from datetime import datetime
-from common import guardar_resultados, descargar_imagenes
 
 
 
@@ -18,9 +17,12 @@ google_api_key = os.getenv("GOOGLE_API_KEY")
 
 class GoogleSearchEngine:
     def __init__(self, api_key, search_engine_id):
+        self.api_key = api_key
+        self.search_engine_id = search_engine_id
+        self.service = build('customsearch', 'v1', developerKey=api_key)
+        self.search_engine_id = search_engine_id
 
-
-    def buscar_imagenes(query, num_imagenes=10, imgSize="LARGE", tipo="photo", 
+    def buscarImgs(self, query, num_imagenes=10, imgSize="LARGE", tipo="photo", 
                         derechos=None, filetype='png', imgColorType='color'):
         """
         Busca imágenes en Google y devuelve información detallada sobre ellas.
@@ -38,16 +40,11 @@ class GoogleSearchEngine:
         Retorna:
         - Lista de diccionarios con información de las imágenes
         """
-        # Reemplaza con tu propia información
-        API_KEY = 'your google apikey'
-        SEARCH_ENGINE_ID = 'your created search engine id'
-        # Construye el servicio de la API
-        service = build('customsearch', 'v1', developerKey=API_KEY)
         
         # Prepara los parámetros de búsqueda
         params = {
             'q': query,
-            'cx': SEARCH_ENGINE_ID,
+            'cx': self.search_engine_id,
             'searchType': 'image',  # Especifica que solo queremos imágenes
             'num': num_imagenes
         }
@@ -64,7 +61,7 @@ class GoogleSearchEngine:
         if filetype:
             params['fileType'] = filetype
         # Realiza la búsqueda
-        res = service.cse().list(**params).execute()
+        res = self.service.cse().list(**params).execute()
         
         # Procesa los resultados y extrae información relevante
         imagenes = []
@@ -87,3 +84,13 @@ class GoogleSearchEngine:
 
 
 
+if __name__ == '__main__':
+    import os
+    import sys
+
+    # Agrega la ruta raíz del proyecto al path
+    project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), "../../"))
+    sys.path.append(project_root)
+
+    print("Rutas en sys.path:")
+    print("\n".join(sys.path))  # Verifica si '/app' está en sys.path
