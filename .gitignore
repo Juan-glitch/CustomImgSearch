@@ -174,3 +174,4 @@ cython_debug/
 # Custom Project Files
 # Ignore the .env file in the root directory
 .env
+Imagenes_Panes/*

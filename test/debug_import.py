@@ -1,6 +1,7 @@
 import os
 import sys
 
+
 print("🗂 Directorio de trabajo actual:", os.getcwd())  # Muestra el directorio desde donde se ejecuta el script
 print("\n📂 Contenido del directorio actual:", os.listdir("."))  # Lista archivos y carpetas en la raíz del proyecto
 print("\n📂 Contenido de '/app/src':", os.listdir("/app/src") if os.path.exists("/app/src") else "No existe")
@@ -11,7 +12,7 @@ for p in sys.path:
 
 # Intenta importar el módulo y captura el error si falla
 try:
-    from module_search.module_imgSearch import GoogleSearchEngine
+    from module_search.class_imgSearch import GoogleSearchEngine
     print("\n✅ Importación exitosa: module_search.module_imgSearch está accesible.")
 except ModuleNotFoundError as e:
     print("\n❌ ERROR:", e)

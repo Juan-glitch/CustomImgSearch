@@ -1,11 +1,18 @@
 # Usamos una imagen base de Python 3.12 con una versión ligera de Debian (slim)
 FROM python:3.12-slim
 
-# Instalamos Git, Bash y dependencias necesarias
+# Instalamos Git, Bash, dependencias necesarias para OpenCV y Qt
 RUN apt-get update && apt-get install -y \
     git \
     bash \
     curl \
+    libgl1-mesa-glx \
+    libglib2.0-0 \
+    libxkbcommon0 \
+    libxcb-xinerama0 \
+    libsm6 \
+    libxext6 \
+    libxrender1 \
     && apt-get clean
 
 # Verificamos que Git está correctamente instalado
@@ -19,6 +26,8 @@ RUN git config --global init.defaultBranch main \
     && git config --global user.email "dev@example.com" \
     && git config --global user.name "Dev Environment"  # Configuramos el usuario y correo de Git
 
+    # Para instalar propiedades para visualizar gráficos con Matplotlib
+RUN apt-get update && apt-get install -y python3-tk
 # Copiamos la carpeta 'scripts' desde el sistema local al contenedor
 COPY ./scripts /app/scripts
 
@@ -49,35 +58,3 @@ RUN echo 'PROMPT_COMMAND="history -a; history -n"' >> /root/.bashrc
 
 # Por defecto, establecemos un comando para ejecutar cuando se inicie el contenedor
 CMD ["bash"]
-
-
-# # Use a lightweight Python image
-# FROM python:3.12-slim
-
-# # Set working directory
-# WORKDIR /app
-
-# # Install dependencies (curl, git, bash, and GitHub CLI)
-# RUN apt-get update && apt-get install -y \
-#     curl \
-#     git \
-#     bash \
-#     gh \
-#     && apt-get clean
-
-# # Configure Git (optional: replace with your GitHub email and username)
-# RUN git config --global user.email "you@example.com" \
-#     && git config --global user.name "Your Name"
-
-# # Authenticate GitHub CLI (Manual Step Required)
-# RUN echo 'To authenticate, run: gh auth login' && \
-#     echo 'Then, follow the prompts to log in.'
-
-# # Copy the project files
-# COPY requirements.txt .
-
-# # Install project dependencies
-# RUN pip install --upgrade pip && pip install -r requirements.txt
-
-# # Keep the container running
-# CMD ["sleep", "infinity"]

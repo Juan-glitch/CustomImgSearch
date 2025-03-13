@@ -6,3 +6,7 @@ ptvsd
 dotenv
 debugpy
 google-api-python-client
+openai
+numpy
+bokeh
+matplotlib

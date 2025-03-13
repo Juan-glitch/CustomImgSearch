@@ -13,6 +13,7 @@ services:
 
     volumes:
       - .:/app:cached # Sincroniza código evitando problemas de rendimiento
+      - ./src:/app/src
       - ./vscode-config:/root/.vscode-server # Monta configuración de VS Code en el contenedor
 
     ports:

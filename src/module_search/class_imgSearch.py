@@ -22,7 +22,7 @@ class GoogleSearchEngine:
         self.service = build('customsearch', 'v1', developerKey=api_key)
         self.search_engine_id = search_engine_id
 
-    def buscarImgs(self, query, num_imagenes=10, imgSize="LARGE", tipo="photo", 
+    def searchImgs(self, query, num_imagenes=10, imgSize="LARGE", tipo="photo", 
                         derechos=None, filetype='png', imgColorType='color'):
         """
         Busca imágenes en Google y devuelve información detallada sobre ellas.

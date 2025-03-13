@@ -16,7 +16,8 @@
         "DanielSanMedia.vscode-codegpt",
         "mhutchie.git-graph",
         "ms-azuretools.vscode-docker",
-        "DanielSanMedium.dscodegpt"
+        "DanielSanMedium.dscodegpt",
+        "Codeium.codeium"
       ],
       "settings": {
         "python.defaultInterpreterPath": "/usr/local/bin/python",
@@ -24,7 +25,8 @@
         "python.linting.pylintEnabled": true,
         "python.formatting.provider": "black",
         "editor.formatOnSave": true,
-        "python.testing.pytestEnabled": true
+        "python.testing.pytestEnabled": true,
+        "debugpy.justMyCode": false
       }
     }
   },
@@ -36,7 +38,8 @@
   "remoteUser": "root",
   "mounts": [
     "source=${localWorkspaceFolder},target=/app,type=bind,consistency=cached",
-    "source=${localWorkspaceFolder}/.env,target=/app/.env,type=bind"
+    "source=${localWorkspaceFolder}/.env,target=/app/.env,type=bind",
+    "source=${localWorkspaceFolder}/src,target=/app/src,type=bind,consistency=cached"
   ],
   "workspaceFolder": "/app"
 }
