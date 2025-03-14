@@ -81,7 +81,7 @@ def process_image(image_path, embeddings, embeddingTranslator, researcher, base_
     os.makedirs(image_dir, exist_ok=True)
 
     # Crear el objeto ProcessedImage
-    processed_image = ProcessedImage(image_path, image_embedding, description, search_results)
+    processed_image = process_image(image_path, image_embedding, description, search_results)
 
     # 5. Descargar las imágenes obtenidas
     for idx, url in enumerate(search_results):

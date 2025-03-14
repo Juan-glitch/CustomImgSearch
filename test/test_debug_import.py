@@ -12,7 +12,7 @@ for p in sys.path:
 
 # Intenta importar el módulo y captura el error si falla
 try:
-    from module_search.class_imgSearch import GoogleSearchEngine
+    from module_search_engine.class_searchEngine import GoogleSearchEngine
     print("\n✅ Importación exitosa: module_search.module_imgSearch está accesible.")
 except ModuleNotFoundError as e:
     print("\n❌ ERROR:", e)
