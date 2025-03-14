@@ -2,24 +2,11 @@ import sys
 import os
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'src')))
-from module_search.class_imgSearch import GoogleSearchEngine
 from common.utils import guardar_resultados, descargar_imagenes
-import debugpy
 from dotenv import load_dotenv, find_dotenv
 import os
-from module_search.class_imgSearch import GoogleSearchEngine  # Importa el módulo desde la raíz del proyecto
+from module_search_engine.class_searchEngine import GoogleSearchEngine  # Importa el módulo desde la raíz del proyecto
 
-# Permite que VS Code se conecte al depurador
-debugpy.listen(("0.0.0.0", 5678))
-print("Esperando debugger...")
-debugpy.wait_for_client()  # Espera hasta que VS Code se conecte
-
-# Una vez conectado, puedes depurar cualquier    parte del código
-
-
-print("¡El debugger está activo!")
-
-import json
 
 def test_1():
 
@@ -45,8 +32,9 @@ if __name__ == '__main__':
     print(os.getenv("GOOGLE_APIKEY"))  
     print(os.getenv("GOOGLE_CSX"))
 
+    query = 'perros'
     researcher = GoogleSearchEngine(os.getenv("GOOGLE_APIKEY"), os.getenv("GOOGLE_CSX"))
-    resultados = researcher.searchImgs("perros", 5, "LARGE", "photo")
+    resultados = researcher.searchImgs(query, 5, "LARGE", "photo")
           
     # # Busca las imágenes
     
@@ -66,6 +54,11 @@ if __name__ == '__main__':
         descargar = input("¿Deseas descargar estas imágenes? (s/n): ").lower()
         if descargar == 's' or descargar == 'si':
             descargar_imagenes(resultados)
+
+    links = researcher.extract_links(query, num_imagenes=5)
+    print("Links extraídos:")
+    for link in links:
+        print(link)   
 
 if __name__ == '__main__':
     test_1()

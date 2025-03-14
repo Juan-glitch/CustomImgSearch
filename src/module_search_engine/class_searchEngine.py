@@ -81,16 +81,14 @@ class GoogleSearchEngine:
         
         return imagenes
 
+    def extract_links(self, query, num_imagenes=10, imgSize="LARGE", tipo="photo", 
+                      derechos=None, filetype='png', imgColorType='color'):
+        """
+        Realiza la búsqueda de imágenes y extrae solo los links (URLs) de cada imagen.
+        Retorna una lista de strings con las URLs.
+        """
+        resultados = self.searchImgs(query, num_imagenes, imgSize, tipo, derechos, filetype, imgColorType)
+        links = [item.get('enlace') for item in resultados if item.get('enlace')]
+        return links
 
 
-
-if __name__ == '__main__':
-    import os
-    import sys
-
-    # Agrega la ruta raíz del proyecto al path
-    project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), "../../"))
-    sys.path.append(project_root)
-
-    print("Rutas en sys.path:")
-    print("\n".join(sys.path))  # Verifica si '/app' está en sys.path
