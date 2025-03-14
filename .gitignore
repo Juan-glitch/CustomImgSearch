@@ -175,3 +175,4 @@ cython_debug/
 # Ignore the .env file in the root directory
 .env
 Imagenes_Panes/*
+output_folder/*

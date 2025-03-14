@@ -12,12 +12,13 @@
         "ms-toolsai.jupyter",
         "yzhang.markdown-all-in-one",
         "eamodio.gitlens",
-        "GitHub.copilot",
-        "DanielSanMedia.vscode-codegpt",
+        // "GitHub.copilot",
+        // "DanielSanMedia.vscode-codegpt",
         "mhutchie.git-graph",
         "ms-azuretools.vscode-docker",
-        "DanielSanMedium.dscodegpt",
-        "Codeium.codeium"
+        // "DanielSanMedium.dscodegpt",
+        "Codeium.codeium",
+        "mechatroner.rainbow-csv"
       ],
       "settings": {
         "python.defaultInterpreterPath": "/usr/local/bin/python",
