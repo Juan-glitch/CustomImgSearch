@@ -1,42 +1,104 @@
-# CustomImgSearch
-CustomImgSearch allows you to compare an image query against your own images. If a match is found, the image is stored with your applied filters.
+# 🔍 CustomImgSearch 
 
-## Git Configuration Setup
+Herramienta para comparar imágenes de búsqueda contra tu colección personal. Al encontrar coincidencias, almacena las imágenes con los filtros aplicados.
 
-Follow these steps to configure Git for the project:
+## 📂 Estructura del Proyecto
+```
+app/
+├── .devcontainer/
+│ ├── Dockerfile
+│ ├── devcontainer.json
+│ └── docker-compose.yml
+├── .vscode/
+│ └── settings.json
+├── scripts/
+│ └── setup_git_config.sh
+├── src/
+│ ├── common/
+│ │ ├── project_tree.py
+│ │ └── utils.py
+│ ├── module_embeddings/
+│ │ ├── _moduleDoc.md
+│ │ ├── class_embeddingDescriber.py
+│ │ ├── class_embedinnizer.py
+│ │ ├── utils_embeddings.py
+│ │ └── verify_img_preprocessing.ipynb
+│ ├── module_folder_data_explorer/
+│ │ └── class_folderDataExporer.py
+│ ├── module_img_metadata_extractor/
+│ │ ├── class_metadataExtractor.py
+│ │ └── utils_metadataExtractor.py
+│ └── module_search_engine/
+│ ├── __doc.md
+│ └── class_searchEngine.py
+├── test/
+│ ├── test_debug_import.py
+│ ├── test_embeddings_module.py
+│ ├── test_folderDataExplorer_module.py
+│ ├── test_module_img_metadata_extractor.py
+│ └── test_search_module.py
+├── .env
+├── .env-example
+├── .gitignore
+├── LICENSE
+├── README.md
+├── estructura.txt
+└── requirements.txt
+```
 
-### 1. Clone the Repository
-Clone the project repository to your local machine:
+
+## 🔄 Flujo de Trabajo del Proyecto
+
+```mermaid
+graph TD
+    A[Inicio] --> B[Definir rutas y variables]
+    B --> C[Carga de entorno con dotenv]
+    C --> D[Inicializar modelos y servicios]
+    D --> E[Instanciar FolderDataExporter]
+    E --> F[Procesar imágenes de carpeta]
+    F --> G[Generar embeddings con Embeddings]
+    G --> H[Traducir embeddings con EmbeddingDescriber]
+    H --> I[Realizar búsqueda con GoogleSearchEngine]
+    I --> J[Obtener enlaces de imágenes similares]
+    J --> K[Exportar resultados y metadatos]
+    K --> L[Fin]
+```
+
+⚙️ Configuración de Git
+1. Clonar el repositorio
 ```bash
 git clone https://github.com/yourusername/CustomImgSearch.git
-````
+```
 
-### 2. Set Up Your .env File
-Copy the example .env file to create your own configuration file:
+2. Configurar variables de entorno
+Copiar el archivo .env de ejemplo:
 
 ```bash
-cp .env-sample .env
-Edit the .env file and add your GitHub username and email:
+cp .env-example .env
 ```
+
+Editar el archivo .env con tus credenciales:
+
 ```env
-GIT_USER_NAME=YourGitHubUsername
-GIT_USER_EMAIL=your-email@example.com
+GIT_USER_NAME=TuUsuarioGitHub
+GIT_USER_EMAIL=tu-email@example.com
 ```
-
-### 3. Run the Setup Script
-Run the provided setup script to configure Git with your username and email:
-
+1. Ejecutar script de configuración
 ```bash
-./scripts/set_git_config.sh
+chmod +x scripts/setup_git_config.sh  # Si es necesario dar permisos
+./scripts/setup_git_config.sh
 ```
+📌 Notas Importantes
+✅ Seguridad: El archivo .env está incluido en .gitignore para evitar exposición de credenciales
 
-# Notes
+👥 Colaboración: Cada usuario debe:
 
-Ensure your .env file is never committed to the repository by adding it to .gitignore.
+Crear su propio .env
 
-Each collaborator should create their own .env file and run the setup script to personalize their Git configuration.
+Ejecutar el script de configuración
 
-This workflow guarantees that all collaborators' commits are correctly attributed to their GitHub accounts.
+Mantener actualizado su fork/branch
 
+🔄 Los commits se atribuirán automáticamente al usuario configurado en .env
 
-This version simplifies and clarifies the steps, using consistent headings and a more intuitive flow. It also includes helpful notes about `.gitignore` to ensure security. Let me know if you'd like further tweaks!
+Nota sobre el diagrama: El diagrama Mermaid muestra el flujo principal de procesamiento de imágenes, no está relacionado con la configuración de cuentas GitHub.
