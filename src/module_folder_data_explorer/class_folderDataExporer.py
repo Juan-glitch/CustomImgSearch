@@ -9,20 +9,23 @@ from module_embeddings.class_embeddingDescriber import EmbeddingDescriber
 from module_search_engine.class_searchEngine import GoogleSearchEngine 
 
 class FolderDataExporter:
-    def __init__(self, folder_path, output_folder='OutputFiles'):
+    def __init__(self, folder_path,output_folder, output_csv_path='OutputFiles'):
         """
         folder_path: ruta de la carpeta a procesar.
         output_folder: carpeta donde se almacenan los archivos de salida.
         """
         self.folder_path = folder_path
         self.output_folder = output_folder
+        self.output_csv_path = output_csv_path
         os.makedirs(self.output_folder, exist_ok=True)
     
-    def get_file_info(self, file_path):
+    def get_file_info(self, file_path=''):
         """
         Extrae la información básica de un archivo y crea el diccionario de metadatos.
         Se dejan campos vacíos para que luego se completen con los resultados de los modelos.
         """
+        if file_path == '':
+            file_path = self.output_folder
         file_name = os.path.basename(file_path)
         directory = os.path.dirname(file_path)
         return {
@@ -35,7 +38,35 @@ class FolderDataExporter:
             "output_file_directory": "",# Se completará con el directorio de salida para archivos relacionados
             "img_counts": 0             # Se completará con el número de imágenes (por ejemplo, las descargadas)
         }
-    
+    def process_directory(self, directory_path=None, output_csv_path=None):
+        """
+        Procesa todos los archivos en un directorio y guarda los datos en un archivo CSV.
+        Si no se proporcionan argumentos, utiliza los valores predeterminados de la clase.
+        """
+        # Utiliza los valores predeterminados si no se pasan parámetros
+        directory_path = directory_path or self.folder_path
+        output_csv_path = output_csv_path or self.output_csv_path
+
+        # Lista para almacenar la información de los archivos
+        file_data = []
+
+        # Recorre todos los archivos en el directorio
+        for root, _, files in os.walk(directory_path):
+            for file_name in files:
+                file_path = os.path.join(root, file_name)
+                file_info = self.get_file_info(file_path)
+                file_data.append(file_info)
+
+        # Guarda los datos en un archivo CSV
+        with open(output_csv_path, mode='w', newline='', encoding='utf-8') as csv_file:
+            writer = csv.DictWriter(csv_file, fieldnames=[
+                "file_name", "directory", "embedding", "short_description",
+                "long_description", "search_links", "output_file_directory", "img_counts"
+            ])
+            writer.writeheader()
+            writer.writerows(file_data)
+
+        print(f"Datos guardados en {output_csv_path}")  
     def process_single_image_with_models(self, image_path, embeddings, embeddingTranslator, researcher,
                                            extra_context='', theme='', search_engine='google_images'):
         """
@@ -102,6 +133,7 @@ class FolderDataExporter:
         Si el archivo ya existe, se leen las filas existentes y se añade la nueva información,
         manteniendo todas las columnas completas.
         """
+
         self._ensure_output_dir(output_file)
         combined_data = []
         

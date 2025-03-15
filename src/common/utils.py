@@ -8,8 +8,6 @@ import numpy as np
 from PIL import Image
 import matplotlib.pyplot as plt
 
-from bokeh.plotting import figure, output_file, save
-from bokeh.io import show
 from PIL import Image
 import numpy as np
 

@@ -5,15 +5,13 @@ from module_folder_data_explorer.class_folderDataExporer import FolderDataExport
 
 # Ejemplo de uso:
 if __name__ == '__main__':
-    # Ruta de la carpeta con imágenes que se van a procesar
-    folder_path = "Imagenes_Panes"  
+        # Definir las rutas al inicio para mayor claridad
+    OUTPUT_FOLDER = "output_folder"
+    METADATA_FILE = os.path.join(OUTPUT_FOLDER, "_img_metadata.csv")
+    FOLDER_PATH = "Imagenes_Panes"
+    
+
     # Instancia del exportador de datos, especificando el formato de salida (csv, json o yml)
-    exporter = FolderDataExporter(folder_path, output_format='csv')  
-    # Procesa la carpeta y almacena los metadatos en la variable 'data'
-    data = exporter.process_folder()
-    # Carpeta de salida para el archivo de metadatos
-    output_folder = "output_folder"
-    # Ruta completa del archivo de metadatos que se va a generar
-    outputdir = os.path.join(output_folder, "_img_metadata.csv")
-    # Exporta los metadatos a un archivo en la ruta especificada
-    exporter.export_data(data, outputdir)
+    exporter = FolderDataExporter(FOLDER_PATH, OUTPUT_FOLDER, METADATA_FILE)  
+    exporter.process_directory()
+
