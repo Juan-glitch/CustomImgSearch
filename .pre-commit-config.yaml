@@ -1,0 +1,22 @@
+repos:
+- repo: https://github.com/pre-commit/pre-commit-hooks
+  rev: v5.0.0
+  hooks:
+    - id: check-yaml
+    - id: end-of-file-fixer
+    - id: trailing-whitespace
+- repo: local
+  hooks:
+    - id: google-docstrings
+      name: Google Docstrings Formatter
+      entry: python pre-commit/format_docstrings.py --staged
+      language: system
+      types: [python]
+      stages: [pre-commit]
+      args: [--staged]
+      require_serial: true
+    # - id: update-version
+    #   name: Update Version Info
+    #   entry: python pre-commit/update_version.py --staged
+    #   language: system
+    #   pass_filenames: false

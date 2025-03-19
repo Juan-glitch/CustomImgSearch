@@ -10,3 +10,6 @@ openai
 numpy
 bokeh
 matplotlib
+pre-commit
+tokenize-rt
+astunparse
