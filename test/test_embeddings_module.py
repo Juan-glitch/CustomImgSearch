@@ -1,3 +1,4 @@
+# Version: 0.0.1 | Updated: 2025-03-17 15:06:32 | Branch: DEV | Commit: c6cc354 |  Repo: Juan-glitch/CustomImgSearch
 import sys
 import os
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'src')))
